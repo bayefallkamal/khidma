@@ -1,0 +1,27 @@
+
+{
+    "khidmaApp": {
+        "enseignant" : {
+            "home": {
+                "title": "Enseignants",
+                "createLabel": "Créer un nouveau Enseignant",
+                "createOrEditLabel": "Créer ou éditer un Enseignant"
+            },
+            "created": "Un nouveau Enseignant a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Enseignant avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Enseignant avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Enseignant {{ id }} ?"
+            },
+            "detail": {
+                "title": "Enseignant"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email",
+            "phoneNumber": "Phone Number",
+            "adresse": "Adresse",
+            "eleve": "Eleve"
+        }
+    }
+}

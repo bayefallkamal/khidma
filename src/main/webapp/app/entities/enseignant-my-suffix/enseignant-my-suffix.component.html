@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="khidmaApp.enseignant.home.title">Enseignants</span>
+        <button class="btn btn-primary float-right jh-create-entity create-enseignant-my-suffix" [routerLink]="['/', { outlets: { popup: ['enseignant-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="khidmaApp.enseignant.home.createLabel">
+            Create new Enseignant
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="enseignants">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="khidmaApp.enseignant.firstName">First Name</span></th>
+            <th><span jhiTranslate="khidmaApp.enseignant.lastName">Last Name</span></th>
+            <th><span jhiTranslate="khidmaApp.enseignant.email">Email</span></th>
+            <th><span jhiTranslate="khidmaApp.enseignant.phoneNumber">Phone Number</span></th>
+            <th><span jhiTranslate="khidmaApp.enseignant.adresse">Adresse</span></th>
+            <th><span jhiTranslate="khidmaApp.enseignant.eleve">Eleve</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let enseignant of enseignants ;trackBy: trackId">
+                <td><a [routerLink]="['../enseignant-my-suffix', enseignant.id ]">{{enseignant.id}}</a></td>
+                <td>{{enseignant.firstName}}</td>
+                <td>{{enseignant.lastName}}</td>
+                <td>{{enseignant.email}}</td>
+                <td>{{enseignant.phoneNumber}}</td>
+                <td>{{enseignant.adresse}}</td>
+                <td>
+                    <span *ngFor="let eleve of enseignant.eleves; let last = last">
+                            <a class="form-control-static" [routerLink]="['../eleve-my-suffix', eleve?.id ]">{{eleve.firstName}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../enseignant-my-suffix', enseignant.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'enseignant-my-suffix/'+ enseignant.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'enseignant-my-suffix/'+ enseignant.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPaiementLabel" jhiTranslate="khidmaApp.paiement.home.createOrEditLabel">Create or edit a Paiement</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!paiement.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="paiement.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khidmaApp.paiement.datePaiement" for="field_datePaiement">Date Paiement</label>
+            <div class="d-flex">
+                <input id="field_datePaiement" type="datetime-local" class="form-control" name="datePaiement" [(ngModel)]="paiement.datePaiement"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khidmaApp.paiement.montant" for="field_montant">Montant</label>
+            <input type="number" class="form-control" name="montant" id="field_montant"
+                [(ngModel)]="paiement.montant" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khidmaApp.paiement.typePaiement" for="field_typePaiement">Type Paiement</label>
+            <input type="text" class="form-control" name="typePaiement" id="field_typePaiement"
+                [(ngModel)]="paiement.typePaiement" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khidmaApp.paiement.mois" for="field_mois">Mois</label>
+            <input type="text" class="form-control" name="mois" id="field_mois"
+                [(ngModel)]="paiement.mois" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khidmaApp.paiement.nomPayeur" for="field_nomPayeur">Nom Payeur</label>
+            <input type="text" class="form-control" name="nomPayeur" id="field_nomPayeur"
+                [(ngModel)]="paiement.nomPayeur" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khidmaApp.paiement.telPayeur" for="field_telPayeur">Tel Payeur</label>
+            <input type="text" class="form-control" name="telPayeur" id="field_telPayeur"
+                [(ngModel)]="paiement.telPayeur" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khidmaApp.paiement.eleve" for="field_eleve">Eleve</label>
+            <select class="form-control" id="field_eleve" name="eleve" [(ngModel)]="paiement.eleveId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="eleveOption.id" *ngFor="let eleveOption of eleves; trackBy: trackEleveById">{{eleveOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

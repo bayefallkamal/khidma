@@ -1,0 +1,52 @@
+
+<div *ngIf="paiement">
+    <h2><span jhiTranslate="khidmaApp.paiement.detail.title">Paiement</span> {{paiement.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="khidmaApp.paiement.datePaiement">Date Paiement</span></dt>
+        <dd>
+            <span>{{paiement.datePaiement | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="khidmaApp.paiement.montant">Montant</span></dt>
+        <dd>
+            <span>{{paiement.montant}}</span>
+        </dd>
+        <dt><span jhiTranslate="khidmaApp.paiement.typePaiement">Type Paiement</span></dt>
+        <dd>
+            <span>{{paiement.typePaiement}}</span>
+        </dd>
+        <dt><span jhiTranslate="khidmaApp.paiement.mois">Mois</span></dt>
+        <dd>
+            <span>{{paiement.mois}}</span>
+        </dd>
+        <dt><span jhiTranslate="khidmaApp.paiement.nomPayeur">Nom Payeur</span></dt>
+        <dd>
+            <span>{{paiement.nomPayeur}}</span>
+        </dd>
+        <dt><span jhiTranslate="khidmaApp.paiement.telPayeur">Tel Payeur</span></dt>
+        <dd>
+            <span>{{paiement.telPayeur}}</span>
+        </dd>
+        <dt><span jhiTranslate="khidmaApp.paiement.eleve">Eleve</span></dt>
+        <dd>
+            <div *ngIf="paiement.eleveId">
+                <a [routerLink]="['/eleve-my-suffix', paiement.eleveId]">{{paiement.eleveId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'paiement-my-suffix/'+ paiement.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

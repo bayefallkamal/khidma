@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="khidmaApp.parent.home.title">Parents</span>
+        <button class="btn btn-primary float-right jh-create-entity create-parent-my-suffix" [routerLink]="['/', { outlets: { popup: ['parent-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="khidmaApp.parent.home.createLabel">
+            Create new Parent
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="parents">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="khidmaApp.parent.firstName">First Name</span></th>
+            <th><span jhiTranslate="khidmaApp.parent.lastName">Last Name</span></th>
+            <th><span jhiTranslate="khidmaApp.parent.email">Email</span></th>
+            <th><span jhiTranslate="khidmaApp.parent.phoneNumber">Phone Number</span></th>
+            <th><span jhiTranslate="khidmaApp.parent.adresse">Adresse</span></th>
+            <th><span jhiTranslate="khidmaApp.parent.eleve">Eleve</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let parent of parents ;trackBy: trackId">
+                <td><a [routerLink]="['../parent-my-suffix', parent.id ]">{{parent.id}}</a></td>
+                <td>{{parent.firstName}}</td>
+                <td>{{parent.lastName}}</td>
+                <td>{{parent.email}}</td>
+                <td>{{parent.phoneNumber}}</td>
+                <td>{{parent.adresse}}</td>
+                <td>
+                    <div *ngIf="parent.eleveId">
+                        <a [routerLink]="['../eleve-my-suffix', parent.eleveId  ]" >{{parent.eleveId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../parent-my-suffix', parent.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'parent-my-suffix/'+ parent.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'parent-my-suffix/'+ parent.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

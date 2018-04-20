@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span jhiTranslate="khidmaApp.paiement.home.title">Paiements</span>
+        <button class="btn btn-primary float-right jh-create-entity create-paiement-my-suffix" [routerLink]="['/', { outlets: { popup: ['paiement-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="khidmaApp.paiement.home.createLabel">
+            Create new Paiement
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="paiements">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="khidmaApp.paiement.datePaiement">Date Paiement</span></th>
+            <th><span jhiTranslate="khidmaApp.paiement.montant">Montant</span></th>
+            <th><span jhiTranslate="khidmaApp.paiement.typePaiement">Type Paiement</span></th>
+            <th><span jhiTranslate="khidmaApp.paiement.mois">Mois</span></th>
+            <th><span jhiTranslate="khidmaApp.paiement.nomPayeur">Nom Payeur</span></th>
+            <th><span jhiTranslate="khidmaApp.paiement.telPayeur">Tel Payeur</span></th>
+            <th><span jhiTranslate="khidmaApp.paiement.eleve">Eleve</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let paiement of paiements ;trackBy: trackId">
+                <td><a [routerLink]="['../paiement-my-suffix', paiement.id ]">{{paiement.id}}</a></td>
+                <td>{{paiement.datePaiement | date:'medium'}}</td>
+                <td>{{paiement.montant}}</td>
+                <td>{{paiement.typePaiement}}</td>
+                <td>{{paiement.mois}}</td>
+                <td>{{paiement.nomPayeur}}</td>
+                <td>{{paiement.telPayeur}}</td>
+                <td>
+                    <div *ngIf="paiement.eleveId">
+                        <a [routerLink]="['../eleve-my-suffix', paiement.eleveId  ]" >{{paiement.eleveId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../paiement-my-suffix', paiement.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'paiement-my-suffix/'+ paiement.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'paiement-my-suffix/'+ paiement.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
