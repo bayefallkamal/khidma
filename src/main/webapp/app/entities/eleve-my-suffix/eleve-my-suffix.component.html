@@ -1,0 +1,73 @@
+<div>
+    <h2>
+        <span jhiTranslate="khidmaApp.eleve.home.title">Eleves</span>
+        <button class="btn btn-primary float-right jh-create-entity create-eleve-my-suffix" [routerLink]="['/', { outlets: { popup: ['eleve-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="khidmaApp.eleve.home.createLabel">
+            Create new Eleve
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="eleves">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="khidmaApp.eleve.firstName">First Name</span></th>
+            <th><span jhiTranslate="khidmaApp.eleve.lastName">Last Name</span></th>
+            <th><span jhiTranslate="khidmaApp.eleve.dateNaiss">Date Naiss</span></th>
+            <th><span jhiTranslate="khidmaApp.eleve.lieuNaiss">Lieu Naiss</span></th>
+            <th><span jhiTranslate="khidmaApp.eleve.dateEntree">Date Entree</span></th>
+            <th><span jhiTranslate="khidmaApp.eleve.photo">Photo</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let eleve of eleves ;trackBy: trackId">
+                <td><a [routerLink]="['../eleve-my-suffix', eleve.id ]">{{eleve.id}}</a></td>
+                <td>{{eleve.firstName}}</td>
+                <td>{{eleve.lastName}}</td>
+                <td>{{eleve.dateNaiss | date:'medium'}}</td>
+                <td>{{eleve.lieuNaiss}}</td>
+                <td>{{eleve.dateEntree | date:'medium'}}</td>
+                <td>
+                    <a *ngIf="eleve.photo" (click)="openFile(eleve.photoContentType, eleve.photo)">
+                        <img [src]="'data:' + eleve.photoContentType + ';base64,' + eleve.photo" style="max-height: 30px;" alt="eleve image"/>
+                    </a>
+                    <span *ngIf="eleve.photo">{{eleve.photoContentType}}, {{byteSize(eleve.photo)}}</span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../eleve-my-suffix', eleve.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'eleve-my-suffix/'+ eleve.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'eleve-my-suffix/'+ eleve.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

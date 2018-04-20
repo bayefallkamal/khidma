@@ -1,0 +1,56 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myEnseignantLabel" jhiTranslate="khidmaApp.enseignant.home.createOrEditLabel">Create or edit a Enseignant</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!enseignant.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="enseignant.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khidmaApp.enseignant.firstName" for="field_firstName">First Name</label>
+            <input type="text" class="form-control" name="firstName" id="field_firstName"
+                [(ngModel)]="enseignant.firstName" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khidmaApp.enseignant.lastName" for="field_lastName">Last Name</label>
+            <input type="text" class="form-control" name="lastName" id="field_lastName"
+                [(ngModel)]="enseignant.lastName" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khidmaApp.enseignant.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="enseignant.email" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khidmaApp.enseignant.phoneNumber" for="field_phoneNumber">Phone Number</label>
+            <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                [(ngModel)]="enseignant.phoneNumber" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khidmaApp.enseignant.adresse" for="field_adresse">Adresse</label>
+            <input type="text" class="form-control" name="adresse" id="field_adresse"
+                [(ngModel)]="enseignant.adresse" />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="khidmaApp.enseignant.eleve" for="field_eleve">Eleve</label>
+            <select class="form-control" id="field_eleve" multiple name="eleve" [(ngModel)]="enseignant.eleves">
+                <option [ngValue]="getSelected(enseignant.eleves, eleveOption)" *ngFor="let eleveOption of eleves; trackBy: trackEleveById">{{eleveOption.firstName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

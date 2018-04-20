@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "eleve",
+            "otherEntityName": "eleve",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "datePaiement",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "montant",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "typePaiement",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mois",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nomPayeur",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telPayeur",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180420125302",
+    "entityTableName": "paiement",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

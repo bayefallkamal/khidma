@@ -1,0 +1,51 @@
+
+<div *ngIf="eleve">
+    <h2><span jhiTranslate="khidmaApp.eleve.detail.title">Eleve</span> {{eleve.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="khidmaApp.eleve.firstName">First Name</span></dt>
+        <dd>
+            <span>{{eleve.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="khidmaApp.eleve.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{eleve.lastName}}</span>
+        </dd>
+        <dt><span jhiTranslate="khidmaApp.eleve.dateNaiss">Date Naiss</span></dt>
+        <dd>
+            <span>{{eleve.dateNaiss | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="khidmaApp.eleve.lieuNaiss">Lieu Naiss</span></dt>
+        <dd>
+            <span>{{eleve.lieuNaiss}}</span>
+        </dd>
+        <dt><span jhiTranslate="khidmaApp.eleve.dateEntree">Date Entree</span></dt>
+        <dd>
+            <span>{{eleve.dateEntree | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="khidmaApp.eleve.photo">Photo</span></dt>
+        <dd>
+            <div *ngIf="eleve.photo">
+                <a (click)="openFile(eleve.photoContentType, eleve.photo)">
+                    <img [src]="'data:' + eleve.photoContentType + ';base64,' + eleve.photo" style="max-width: 100%;" alt="eleve image"/>
+                </a>
+                {{eleve.photoContentType}}, {{byteSize(eleve.photo)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'eleve-my-suffix/'+ eleve.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

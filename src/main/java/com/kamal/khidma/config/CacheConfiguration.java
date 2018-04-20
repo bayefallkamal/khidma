@@ -44,6 +44,26 @@ public class CacheConfiguration {
             cm.createCache(com.kamal.khidma.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.kamal.khidma.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(com.kamal.khidma.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Region.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Country.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Location.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Department.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Department.class.getName() + ".employees", jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Task.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Task.class.getName() + ".jobs", jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Employee.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Employee.class.getName() + ".jobs", jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Eleve.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Eleve.class.getName() + ".parents", jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Eleve.class.getName() + ".paiements", jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Eleve.class.getName() + ".enseignants", jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Parent.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Paiement.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Enseignant.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Enseignant.class.getName() + ".eleves", jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Job.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.Job.class.getName() + ".tasks", jcacheConfiguration);
+            cm.createCache(com.kamal.khidma.domain.JobHistory.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

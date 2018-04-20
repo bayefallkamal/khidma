@@ -1,0 +1,58 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "parent",
+            "otherEntityName": "parent",
+            "otherEntityRelationshipName": "eleve"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "paiement",
+            "otherEntityName": "paiement",
+            "otherEntityRelationshipName": "eleve"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "enseignant",
+            "otherEntityName": "enseignant",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "eleve"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateNaiss",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "lieuNaiss",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateEntree",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "photo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20180420125300",
+    "entityTableName": "eleve",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}
